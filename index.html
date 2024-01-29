@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Select and Display URL</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <label for="buttonStyle">Bouton</label>
+  <select id="buttonStyle" onchange="displaySelectedURL()">
+    <option value="bouton">Bouton</option>
+    <option value="sansIntitule">Sans Intitulé</option>
+    <option value="intitulePasPertinent">Intitulé pas pertinent</option>
+    <option value="sansRole">Sans Rôle</option>
+    <option value="mauvaisRole">Mauvais Rôle</option>
+    <option value="iconeUniquement">Icône Uniquement</option>
+    <option value="iconeDecorative">Icône Décorative</option>
+    <option value="estompe">Estompé</option>
+    <option value="custom">Custom</option>
+  </select>
+
+  <div id="result"></div>
+
+  <button id="copyButton" onclick="copyToClipboard()">Copier la solution</button>
+
+  <script>
+    function displaySelectedURL() {
+      var selectedValue = document.getElementById("buttonStyle").value;
+      var textToCopy = "Suivez les recommendations de notre design système pour ce composant: "
+
+      var urlMap = {
+        bouton: "https://design.ipedis.com/5dda74a23/p/789049-buttons/b/81627b/t/808fa6",
+        sansIntitule: "https://design.ipedis.com/5dda74a23/p/789049-buttons/b/81627b/t/808fa6",
+        intitulePasPertinent: "https://design.ipedis.com/5dda74a23/p/789049-buttons/b/81627b/t/808fa6",
+        sansRole: "https://design.ipedis.com/5dda74a23/p/789049-buttons/b/81627b/t/808fa6",
+        mauvaisRole: "https://design.ipedis.com/5dda74a23/p/789049-buttons/b/81627b/t/808fa6",
+        iconeUniquement: "https://design.ipedis.com/5dda74a23/p/789049-buttons/b/81627b/t/552d15",
+        iconeDecorative: "https://design.ipedis.com/5dda74a23/p/789049-buttons/b/81627b/t/13b98a",
+        estompe: "https://design.ipedis.com/5dda74a23/p/789049-buttons/b/81627b/t/85de30",
+        custom: "https://design.ipedis.com/5dda74a23/p/789049-buttons/b/81627b/t/32ef8b",
+      };
+
+      var result = textToCopy + "<a href="+urlMap[selectedValue]+" target='_blank'>" + urlMap[selectedValue] + "</a>";
+      document.getElementById("result").innerHTML = result;
+      return result;
+    }
+
+    function copyToClipboard() {
+        var selectedValue = document.getElementById("buttonStyle").value;
+        var textToCopy = "Suivez les recommendations de notre design système pour ce composant: ";
+
+        var urlMap = {
+        bouton: "https://design.ipedis.com/5dda74a23/p/789049-buttons/b/81627b/t/808fa6",
+        sansIntitule: "https://design.ipedis.com/5dda74a23/p/789049-buttons/b/81627b/t/808fa6",
+        intitulePasPertinent: "https://design.ipedis.com/5dda74a23/p/789049-buttons/b/81627b/t/808fa6",
+        sansRole: "https://design.ipedis.com/5dda74a23/p/789049-buttons/b/81627b/t/808fa6",
+        mauvaisRole: "https://design.ipedis.com/5dda74a23/p/789049-buttons/b/81627b/t/808fa6",
+        iconeUniquement: "https://design.ipedis.com/5dda74a23/p/789049-buttons/b/81627b/t/552d15",
+        iconeDecorative: "https://design.ipedis.com/5dda74a23/p/789049-buttons/b/81627b/t/13b98a",
+        estompe: "https://design.ipedis.com/5dda74a23/p/789049-buttons/b/81627b/t/85de30",
+        custom: "https://design.ipedis.com/5dda74a23/p/789049-buttons/b/81627b/t/32ef8b",
+        };
+
+        var result = textToCopy + urlMap[selectedValue];
+
+        // Create a temporary textarea to hold the plain text
+        var tempInput = document.createElement("textarea");
+        tempInput.style.position = "absolute";
+        tempInput.style.left = "-9999px";
+        tempInput.value = result;
+        document.body.appendChild(tempInput);
+
+        // Select and copy the text from the textarea
+        tempInput.select();
+        document.execCommand("copy");
+
+        // Remove the temporary textarea
+        document.body.removeChild(tempInput);
+    }
+  </script>
+
+</body>
+</html>
